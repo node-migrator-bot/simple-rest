@@ -1,5 +1,5 @@
 var _ = require('underscore'),
-	Controller = require('../app/controller');
+	Controller = require('../../../lib/controller');
 
 var UserController = function() {
 	this._ctor.apply(this, arguments);
