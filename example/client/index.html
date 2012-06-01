@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+		<script src="./scripts/lib/jquery.js"></script>
+		<script src="./scripts/lib/underscore.js"></script>
+		<script src="./scripts/lib/backbone.js"></script>
+		<script src="./scripts/lib/mustache.js"></script>
+
+		<script>
+			/*
+				Method is borrowed from: http://stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
+				Author: Tobias Cohen (http://stackoverflow.com/users/66617/tobias-cohen)
+			*/
+			$.fn.serializeObject = function() {
+				 var o = {};
+				 var a = this.serializeArray();
+				 $.each(a, function() {
+					  if (o[this.name] !== undefined) {
+						   if (!o[this.name].push) {
+						       o[this.name] = [o[this.name]];
+						   }
+						   o[this.name].push(this.value || '');
+					  } else {
+						   o[this.name] = this.value || '';
+					  }
+				 });
+				 return o;
+			};
+
+			var require = {
+				baseUrl: './scripts',
+				urlArgs: Math.random()
+			};
+
+			/*
+				The host and port of which the REST API is running at.
+				Ensure that this is correct, otherwise the example will not work.
+			*/
+			var config = {
+				rest_url: 'http://localhost:5000'
+			};
+		</script>
+		
+		<script data-main="./scripts/bootstrap.js" src="./scripts/lib/require.js"></script>
+	</head>
+	
+	<body>
+		<div id="root"></div>
+
+		<script type="text/template" id="templates-user-list">
+			<h1>Users</h1>
+
+			<ul></ul>
+			
+			<form>
+				firstname:<br />
+				<input type="text" name="firstname" value="" /><br />
+				lastname:<br />
+				<input type="text" name="lastname" value="" /><br />
+
+				id:<br />
+				<input type="text" name="id"><br />
+				<input type="submit" value="Save">	
+			</form>
+		</script>
+
+		<script type="text/template" id="templates-user-list-item">
+			<li rel="{{id}}">
+				<a href="" class="update">{{firstname}} {{lastname}}</a> - <a href="" class="delete">Remove</a>
+			</li>
+		</script>
+	</body>
+</html>
