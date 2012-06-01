@@ -1,0 +1,5 @@
+.git*
+.DS_Store
+example/
+node_modules/
+example/server/data/
